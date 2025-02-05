@@ -18,7 +18,21 @@ function User({users, handleUser, selectedUserId}) {
                         onClick={() =>handleClick(user.id)}
 
                     >
-                        {user.name}</li>
+                        <div className={styles.profile_photo}>
+                            <img src={'src/assets/profile.png'} alt='profile image'/>
+                        </div>
+                        <div className={styles.profile_info}>
+                            <h3 className={styles.userName}> {user.name}</h3>
+                            <ul className={styles.info}>
+                                <li><i className='fa fa-envelope'></i>{user.email}</li>
+                                <li><i className='fa fa-map-marker'></i>{user.address.city}</li>
+                                <li><i className='fa fa-phone'></i>{user.phone}</li>
+                                <li><i className='fa fa-briefcase'></i>{user.company.name}</li>
+
+                            </ul>
+                        </div>
+
+                    </li>
                 })}
             </ul>
         </div>

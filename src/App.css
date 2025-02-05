@@ -1,8 +1,8 @@
 #root {
-  max-width: 1280px;
+  max-width: 1400px;
   margin: 50px auto;
   padding: 2rem;
   text-align: center;
-  border: 15px double var(--dark-green);
+  border: 15px double var(--beige);
 }
 

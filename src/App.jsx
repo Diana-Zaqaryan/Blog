@@ -20,10 +20,8 @@ const Main = styled.main`
 const Table = styled.table`
     width: 100%;
     margin-top: 50px;
-`
-
-const Title = styled.th`
-    color: var(--blue);
+    display: flex;
+    justify-content: center;
 `
 
 const UserSTd = styled.td`
@@ -35,7 +33,6 @@ const CommentsTd = styled.td`
     display: block;
 `
 
-const THead  = styled.thead``
 
 const TBody = styled.tbody``
 
@@ -60,17 +57,9 @@ function App() {
       <Main>
 
           <Table>
-              <THead>
-                <tr>
-                  <Title><h1>Users</h1></Title>
-                  <Title><h1>Post</h1></Title>
-                  <Title><h1>Comments</h1></Title>
-                </tr>
-              </THead>
-
 
               <TBody>
-                  <tr>
+                  <tr style={{display: 'flex', gap: '15px'}}>
                       <UserSTd>
                           <UsersList handleUserId={handleUserClick} selectedUserId={selectedUserId}/>
                       </UserSTd>

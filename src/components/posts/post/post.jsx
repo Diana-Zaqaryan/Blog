@@ -16,10 +16,15 @@ function Post({posts, handle, selectedPostId}){
                 key={post.id}
                 className={selectedPostId === post.id ? styles.active : styles.item}
 
-            >{post.title}
-                <small className={styles.after}
-                       onClick={() => handleClick(post.id)}>
-                    Show Comments</small>
+            >
+                <div className={styles.post_info}>
+                    <h3 className={styles.post_title}>{post.title}</h3>
+                    <p>{post.body}</p>
+                    <small className={styles.after}
+                         onClick={() => handleClick(post.id)}>
+                         Show Comments
+                    </small>
+                </div>
             </li>)}
 
         </ul>

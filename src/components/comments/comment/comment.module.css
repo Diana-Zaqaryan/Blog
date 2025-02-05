@@ -1,0 +1,43 @@
+.list , .info{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    text-align: end;
+
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 20px;
+    background-color: var(--grey-purple);
+    margin-top: 10px;
+    text-align: justify;
+
+    &:hover {
+        background-color: var(--light-grey);
+    }
+
+}
+
+.profile_photo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    img {
+        width: 60px;
+    }
+}
+
+.comment_name{
+    font-size: 16px;
+
+}
+
+.email {
+    font-size: 12px;
+    i {
+        margin: 5px;
+    }
+}
