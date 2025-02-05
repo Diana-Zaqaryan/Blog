@@ -1,5 +1,7 @@
 import styles from "./user.module.css"
 import {UserModel} from "../../../models/user.model";
+import {func} from "prop-types";
+import {ReactElement} from "react";
 
 
 interface UserProps  {
@@ -14,14 +16,15 @@ function User({users, handleUser, selectedUserId}: UserProps) {
         handleUser(userId)
     }
 
-    return (
-        <div className= {styles.users_container}>
+
+    function createUsersList(users: UserModel[]): ReactElement {
+        return (
             <ul className={styles.list}>
-                {users.map((user: UserModel )=> {
+                {users.map((user: UserModel) => {
                     return <li
-                        className={selectedUserId===user.id ? styles.active : styles.item}
+                        className={selectedUserId === user.id ? styles.active : styles.item}
                         key={user.id}
-                        onClick={() =>handleClick(user.id)}
+                        onClick={() => handleClick(user.id)}
 
                     >
                         <div className={styles.profile_photo}>
@@ -41,6 +44,12 @@ function User({users, handleUser, selectedUserId}: UserProps) {
                     </li>
                 })}
             </ul>
+        )
+    }
+
+    return (
+        <div className={styles.users_container}>
+            {createUsersList(users)}
         </div>
 
     )

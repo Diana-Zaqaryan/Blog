@@ -1,9 +1,11 @@
 import styles from "../../comments/comment/comment.module.css";
 import {CommentModel} from "../../../models/comment.model";
+import {ReactElement} from "react";
 
 function Comment({comments}: {comments: CommentModel[]}) {
-    return (
-        <div className={styles.users_container}>
+
+    function createComments(comments: CommentModel[]): ReactElement {
+        return (
             <ul className={styles.list}>
                 {comments.map((comment: CommentModel) =>
                     <li key={comment.id}
@@ -22,6 +24,12 @@ function Comment({comments}: {comments: CommentModel[]}) {
                         <p>{comment.body}</p>
                     </li>)}
             </ul>
+        )
+    }
+
+    return (
+        <div className={styles.users_container}>
+            {createComments(comments)}
         </div>
     )
 }
