@@ -4,9 +4,9 @@ import usePosts from "../../custom-hooks/usePosts";
 
 
 interface PostListProp {
-    userId: number,
+    userId: number | null,
     handlePostClick: any,
-    selectedPostId: number
+    selectedPostId: number| null
 }
 function PostsList({userId, handlePostClick, selectedPostId}: PostListProp) {
 

@@ -8,7 +8,7 @@ import useComments from "../../custom-hooks/useComments";
 const CommentListWrapper = styled.div`
     width: 400px;
 `
-function CommentsList({postId}:{postId: number}) {
+function CommentsList({postId}:{postId: number | null}) {
 
    const  {data, isLoading, error} = useComments(postId)
     if (isLoading) {

@@ -8,7 +8,7 @@ const UserListWrapper = styled.div`
 
 interface UserListProp  {
     handleUserId: any,
-    selectedUserId: number
+    selectedUserId: number | null
 }
 function UsersList({handleUserId, selectedUserId}: UserListProp) {
 
