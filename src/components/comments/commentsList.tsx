@@ -1,33 +1,31 @@
 import {useEffect, useState} from "react";
 import Comment from "./comment/comment";
 import styled from "styled-components";
-import {CommentModel} from "../../models/comment.model";
+
+import useComments from "../../custom-hooks/useComments";
 
 
 const CommentListWrapper = styled.div`
     width: 400px;
 `
 function CommentsList({postId}:{postId: number}) {
-    const [comments, setComments] =useState<CommentModel[] | []>([])
 
-    useEffect(()=> {
-        const getComments = async (): Promise<CommentModel[]> => {
-            const url = `https://jsonplaceholder.typicode.com/posts/${postId}/comments`;
-            try {
-                const response = await fetch(url);
-                return await response.json() as CommentModel[]
-            } catch (error: Error) {
-                console.error("Error: ", error.message);
-            }
-        };
-        getComments().then(data =>  setComments(data))
-    },[postId])
+   const  {data, isLoading, error} = useComments(postId)
+    if (isLoading) {
+        return   <div className="custom-loader">eee</div>
+    }
 
+    if (isLoading) {
+        return   <div className="custom-loader">eee</div>
+    }
 
+    if (error) {
+        return <div>{error.message}</div>
+    }
 
     return(
         <CommentListWrapper>
-            <Comment comments={comments}/>
+            <Comment comments={data}/>
         </CommentListWrapper>
     )
 }

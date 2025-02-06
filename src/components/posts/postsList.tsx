@@ -1,6 +1,6 @@
-import {useEffect, useState} from "react";
 import Post from "./post/post";
-import {PostModel} from "../../models/post.model";
+
+import usePosts from "../../custom-hooks/usePosts";
 
 
 interface PostListProp {
@@ -10,29 +10,22 @@ interface PostListProp {
 }
 function PostsList({userId, handlePostClick, selectedPostId}: PostListProp) {
 
-    const [posts, setPosts] =useState<PostModel[] | []>([])
-
     function handleClick(postId: number) {
         handlePostClick(postId)
     }
 
-    useEffect(()=> {
-        const getPosts = async (): Promise<PostModel[]> => {
-            const url = `https://jsonplaceholder.typicode.com/users/${userId}/posts`;
-            try {
-                const response = await fetch(url);
-                return await response.json() as PostModel[];
+    const {data, isLoading, error} = usePosts(userId)
 
-            } catch (error: Error) {
-                console.error("Error: ", error.message);
-            }
-        };
-        getPosts().then((data: PostModel[]) =>  setPosts(data))
-    },[userId])
+    if (isLoading) {
+        return   <div className="custom-loader">eee</div>
+    }
 
+    if (error) {
+        return <div>{error.message}</div>
+    }
 
     return(
-        <Post posts={posts} handle={handleClick} selectedPostId={selectedPostId}/>
+        <Post posts={data} handle={handleClick} selectedPostId={selectedPostId}/>
     )
 
 }

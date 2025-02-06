@@ -1,9 +1,7 @@
-import {useEffect, useState} from "react";
 import User from "./user/user";
 import styled from "styled-components";
-import {UserModel} from "../../models/user.model";
 
-
+import useUsers from "../../custom-hooks/useUsers";
 const UserListWrapper = styled.div`
     width: 390px;
 `
@@ -18,31 +16,21 @@ function UsersList({handleUserId, selectedUserId}: UserListProp) {
         handleUserId(userId)
     }
 
-    const [users, setUsers] =useState<UserModel[] | []>([])
+    const {data, isLoading, error}  = useUsers();
 
-    useEffect(()=> {
-        const getUsers = async (): Promise<UserModel[]> => {
-            const url = "https://jsonplaceholder.typicode.com/users/";
-            try {
-                const response = await fetch(url);
-                return await response.json() as  UserModel[];
-            } catch (error: Error) {
-                console.error("Error: ", error.message);
-            }
-        };
-        getUsers().then((data: UserModel[]) =>  setUsers(data))
-    },[])
 
 
     return (
 
         <UserListWrapper>
-            <User users={users} handleUser={handleUser} selectedUserId={selectedUserId}/>
+            { isLoading ? (<div className="custom-loader"></div>)
+                : !!error ? (<div>{error.message}</div>) :
+                    <User users={data} handleUser={handleUser} selectedUserId={selectedUserId}/>
+            }
         </UserListWrapper>
 
     )
 }
-
 
 
 export default UsersList

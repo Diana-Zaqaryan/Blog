@@ -27,11 +27,21 @@ const Table = styled.table`
 
 const UserSTd = styled.td`
     width: 390px;
-    display: block;
+    display: flex;
+    justify-content: center;
+`
+
+const PostsTd = styled.td`
+    width: 400px;
+    display: flex;
+    justify-content: center;
 `
 const CommentsTd = styled.td`
     width: 400px;
-    display: block;
+
+    display: flex;
+    justify-content: center;
+
 `
 
 
@@ -64,9 +74,9 @@ function App() {
                       <UserSTd>
                           <UsersList handleUserId={handleUserClick} selectedUserId={selectedUserId}/>
                       </UserSTd>
-                      <td>
+                      <PostsTd>
                           <PostsList userId={selectedUserId} handlePostClick={handlePostClick} selectedPostId={selectedPostId}/>
-                      </td>
+                      </PostsTd>
 
                       <CommentsTd>
                           <CommentsList postId={selectedPostId}/>
