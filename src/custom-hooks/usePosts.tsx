@@ -14,6 +14,7 @@ function usePosts(userId: number): returnType {
 
     const {data, error, isLoading} = useQuery<PostModel[]>({
         queryKey: ['posts', userId],
+        staleTime: 100000,
         // queryFn: getPosts,
         queryFn: () => httpService.getPosts(userId),
         select: data => data as PostModel[],

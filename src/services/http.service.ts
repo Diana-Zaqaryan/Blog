@@ -1,8 +1,8 @@
 class HttpService {
-   async getUser (): Promise<any> {
+   async getUser (signal:{signal: AbortSignal}): Promise<any> {
         const url = "https://jsonplaceholder.typicode.com/users/";
         try {
-            const response = await fetch(url);
+            const response = await fetch(url, signal);
             return  response.json() ;
         } catch (error: unknown) {
             if (error instanceof Error)
@@ -21,7 +21,7 @@ class HttpService {
         }
     };
 
-    async getComments (postId: number): Promise<any> {
+    async getComments (postId: number, signal: {signal: AbortSignal}): Promise<any> {
         const url = `https://jsonplaceholder.typicode.com/posts/${postId}/comments`;
         try {
             const response = await fetch(url);

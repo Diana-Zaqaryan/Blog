@@ -17,7 +17,7 @@ function PostsList({userId, handlePostClick, selectedPostId}: PostListProp) {
     const {data, isLoading, error} = usePosts(userId)
 
     if (isLoading) {
-        return   <div className="custom-loader">eee</div>
+        return   <div className="custom-loader"></div>
     }
 
     if (error) {

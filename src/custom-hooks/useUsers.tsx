@@ -18,6 +18,7 @@ export default function useUsers(): returnType {
     const {data, error, isLoading} = useQuery<UserModel[]>({
         queryKey: ['users'],
         queryFn: httpService.getUser,
+        staleTime: 100000,
         select: data => data as UserModel[], // ***** можно модифецировать данные
         retry:3 , // ****** при failed сделает еще 3 запроса перед тем как показать error
         // enabled: true | false // ****** если true то сделает запрос

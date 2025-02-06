@@ -12,11 +12,11 @@ function CommentsList({postId}:{postId: number | null}) {
 
    const  {data, isLoading, error} = useComments(postId)
     if (isLoading) {
-        return   <div className="custom-loader">eee</div>
+        return   <div className="custom-loader"></div>
     }
 
     if (isLoading) {
-        return   <div className="custom-loader">eee</div>
+        return   <div className="custom-loader"></div>
     }
 
     if (error) {

@@ -7,6 +7,7 @@ function useComments(postId: number ) {
 
     const {data, error, isLoading} = useQuery({
         queryKey: ['comments', postId],
+        staleTime: 100000,
         queryFn: () => httpService.getComments(postId),
         select: data => data as CommentModel[]
     })
